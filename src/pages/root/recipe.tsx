@@ -17,7 +17,7 @@ export default function Recipe() {
 
   return (
     <MaxWidthWrapper className="py-10">
-      <div className="w-1/2 mx-auto flex flex-col gap-4">
+      <div className="w-full md:w-1/2 mx-auto flex flex-col gap-4">
         <p className="text-4xl font-[600]">{data?.title}</p>
         <img
           src={data?.image}

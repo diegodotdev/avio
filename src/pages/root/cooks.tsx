@@ -32,10 +32,10 @@ export default function Cooks() {
       exit={{ opacity: 0 }}
     >
       <MaxWidthWrapper>
-        <div className="w-full h-[20vh] flex justify-between items-center">
+        <div className="w-full h-auto md:h-[20vh] flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center gap-4 mb-8">
           <p className="text-3xl font-[600]">Cooks</p>
-          <div className="w-[400px] px-4 py-2 rounded-full border flex items-center gap-2">
-            <Search size="15px" />
+          <div className="w-full md:w-[400px] px-4 py-2 rounded-full border flex items-center gap-2">
+            <Search size={15} />
             <input
               type="text"
               className="grow outline-none"
@@ -45,10 +45,10 @@ export default function Cooks() {
             />
           </div>
         </div>
-        <div className="w-full grid grid-cols-4 gap-8 place-items-start">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
           {filter &&
             filter.map((i, idx) => (
-              <Link to={`/cooks/${i.clerkId}`} key={i.id}>
+              <Link to={`/cooks/${i.clerkId}`} key={i.id} className="w-full">
                 <motion.div
                   className="w-full flex flex-col gap-2"
                   initial={{ opacity: 0, y: "10%" }}
@@ -58,7 +58,7 @@ export default function Cooks() {
                   <img
                     src={i.avatar}
                     alt={i.firstName}
-                    className="h-[181px] rounded-lg object-cover"
+                    className="w-full md:h-[181px] rounded-lg object-cover"
                   />
                   <p className="font-[600] text-base">
                     {i.firstName} {i.lastName}

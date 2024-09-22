@@ -3,9 +3,12 @@ import MaxWidthWrapper from "./max-width-wrapper";
 import { NAV_LINKS } from "../constants";
 import { cn } from "../lib/utils";
 import { SignedIn, SignedOut, SignOutButton } from "@clerk/clerk-react";
-import { Pen } from "lucide-react";
+import { Pen, Menu, X } from "lucide-react";
+import SideMenu from "./side-menu";
+import { useState } from "react";
 
 export default function Nav() {
+  const [isActive, setIsActive] = useState(false);
   const location = useLocation();
 
   return (
@@ -14,7 +17,7 @@ export default function Nav() {
         <Link to="/">
           <span className="montserrat font-[600] text-4xl">Avio</span>
         </Link>
-        <nav className="flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((i) => (
             <Link to={i.href} key={i.id}>
               <div className="flex items-center gap-1">
@@ -54,6 +57,13 @@ export default function Nav() {
             </Link>
           </SignedOut>
         </nav>
+        <button
+          className="bg-neutral-950 text-white p-2 rounded-lg md:hidden relative z-50"
+          onClick={() => setIsActive(!isActive)}
+        >
+          {isActive ? <X size={15} /> : <Menu size={15} />}
+        </button>
+        <SideMenu isActive={isActive} setIsActive={setIsActive} />
       </MaxWidthWrapper>
     </div>
   );

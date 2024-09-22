@@ -24,11 +24,11 @@ export default function Search() {
           Showing results related to: {query}
         </p>
       </div>
-      <p className="text-2xl font-[600]">Recipes:</p>
-      <div className="w-full grid grid-cols-4 gap-8 place-items-start">
+      <p className="text-2xl font-[600]">Recipes: {data?.recipes?.length}</p>
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
         {data?.recipes?.length !== 0 ? (
           data?.recipes.map((i, idx) => (
-            <Link to={`/recipes/${i.id}`} key={i.id}>
+            <Link to={`/recipes/${i.id}`} key={i.id} className="w-full">
               <motion.div
                 className="w-full flex flex-col gap-2"
                 initial={{ opacity: 0, y: "10%" }}
@@ -38,7 +38,7 @@ export default function Search() {
                 <img
                   src={i.image}
                   alt={i.title}
-                  className="h-[181px] rounded-lg object-cover"
+                  className="w-full md:h-[181px] rounded-lg object-cover"
                 />
                 <p className="font-[600] text-base">{i.title}</p>
               </motion.div>
@@ -50,8 +50,8 @@ export default function Search() {
           </div>
         )}
       </div>
-      <p className="text-2xl font-[600]">Users:</p>
-      <div className="w-full grid grid-cols-4 gap-8 place-items-start">
+      <p className="text-2xl font-[600]">Users: {data?.users?.length}</p>
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
         {data?.users?.length !== 0 ? (
           data?.users.map((i, idx) => (
             <Link to={`/cooks/${i.clerkId}`} key={i.id}>
@@ -64,7 +64,7 @@ export default function Search() {
                 <img
                   src={i.avatar}
                   alt={i.firstName}
-                  className="h-[181px] rounded-lg object-cover"
+                  className="w-full md:h-[181px] rounded-lg object-cover"
                 />
                 <p className="font-[600] text-base">
                   {i.firstName} {i.lastName}
