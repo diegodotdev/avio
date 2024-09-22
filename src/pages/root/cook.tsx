@@ -19,9 +19,9 @@ export default function Cook() {
   if (!data) return null;
 
   return (
-    <MaxWidthWrapper className="flex flex-col gap-4">
-      <div className="w-full h-[20vh] flex justify-between items-center">
-        <div className="flex items-center gap-2">
+    <MaxWidthWrapper className="flex flex-col md:gap-4">
+      <div className="w-full h-[20vh] flex flex-col md:flex-row justify-between items-center">
+        <div className="w-full flex items-center gap-2">
           <img
             src={data?.avatar}
             alt={`${data?.firstName} ${data?.lastName}`}
@@ -31,13 +31,13 @@ export default function Cook() {
             {data?.firstName} {data?.lastName}
           </p>
         </div>
-        <p>
+        <p className="hidden md:inline">
           {data?.recipes?.length}{" "}
           {data?.recipes?.length > 1 ? "Recipes" : "Recipe"}
         </p>
       </div>
       <p className="text-2xl font-[600]">Recipes</p>
-      <div className="w-full grid grid-cols-4 gap-8 place-items-start">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
         {data?.recipes?.map((i, idx) => (
           <Link to={`/recipes/${i.id}`} key={i.id}>
             <motion.div
@@ -49,7 +49,7 @@ export default function Cook() {
               <img
                 src={i.image}
                 alt={i.title}
-                className="h-[181px] rounded-lg object-cover"
+                className="w-full md:h-[181px] rounded-lg object-cover"
               />
               <p className="font-[600] text-base">{i.title}</p>
             </motion.div>
