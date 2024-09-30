@@ -6,6 +6,7 @@ import MaxWidthWrapper from "../../components/max-width-wrapper";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { urlFor } from "../../lib/sanity";
 
 export default function Recipes() {
   const [search, setSearch] = useState("");
@@ -42,7 +43,7 @@ export default function Recipes() {
           </div>
         </div>
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
-          {filter &&
+          {filter.length > 0 ? (
             filter.map((i, idx) => (
               <Link to={`/recipes/${i.id}`} key={i.id} className="w-full">
                 <motion.div
@@ -52,14 +53,19 @@ export default function Recipes() {
                   transition={{ delay: idx * 0.2 }}
                 >
                   <img
-                    src={i.image}
+                    src={urlFor(i.image).url()}
                     alt={i.title}
                     className="w-full md:h-[181px] rounded-lg object-cover"
                   />
                   <p className="font-[600] text-base">{i.title}</p>
                 </motion.div>
               </Link>
-            ))}
+            ))
+          ) : (
+            <div className="w-full col-span-5 grid place-items-center">
+              <p>No recipes</p>
+            </div>
+          )}
         </div>
       </MaxWidthWrapper>
     </motion.div>

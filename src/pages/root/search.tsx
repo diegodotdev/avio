@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getSearch } from "../../lib/data";
 import Loading from "../../components/loading";
 import { motion } from "framer-motion";
+import { urlFor } from "../../lib/sanity";
 
 export default function Search() {
   const [searchParams] = useSearchParams();
@@ -36,7 +37,7 @@ export default function Search() {
                 transition={{ delay: idx * 0.2 }}
               >
                 <img
-                  src={i.image}
+                  src={urlFor(i.image).url()}
                   alt={i.title}
                   className="w-full md:h-[181px] rounded-lg object-cover"
                 />
@@ -54,7 +55,7 @@ export default function Search() {
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
         {data?.users?.length !== 0 ? (
           data?.users.map((i, idx) => (
-            <Link to={`/cooks/${i.clerkId}`} key={i.id}>
+            <Link to={`/cooks/${i.username}`} key={i.id}>
               <motion.div
                 className="w-full flex flex-col gap-2"
                 initial={{ opacity: 0, y: "10%" }}
@@ -62,7 +63,7 @@ export default function Search() {
                 transition={{ delay: idx * 0.2 }}
               >
                 <img
-                  src={i.avatar}
+                  src={urlFor(i.avatar).url()}
                   alt={i.firstName}
                   className="w-full md:h-[181px] rounded-lg object-cover"
                 />

@@ -23,7 +23,6 @@ export default function SearchForm() {
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      {...form}
       className="w-full md:w-3/4 rounded-xl border-[5px] border-black py-10 px-4 flex justify-center items-center gap-8 flex-col"
     >
       <p className="text-2xl font-[600]">Get Started</p>

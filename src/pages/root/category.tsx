@@ -6,6 +6,7 @@ import MaxWidthWrapper from "../../components/max-width-wrapper";
 import { Search } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import { urlFor } from "../../lib/sanity";
 
 export default function Category() {
   const { id } = useParams();
@@ -53,7 +54,7 @@ export default function Category() {
                   transition={{ delay: idx * 0.2 }}
                 >
                   <img
-                    src={i.image}
+                    src={urlFor(i.image).url()}
                     alt={i.title}
                     className="w-full md:h-[181px] rounded-lg object-cover"
                   />

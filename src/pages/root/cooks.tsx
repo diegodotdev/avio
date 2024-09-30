@@ -6,6 +6,8 @@ import MaxWidthWrapper from "../../components/max-width-wrapper";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { User } from "lucide-react";
+import { urlFor } from "../../lib/sanity";
 
 export default function Cooks() {
   const [search, setSearch] = useState("");
@@ -48,18 +50,24 @@ export default function Cooks() {
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-8 place-items-start">
           {filter &&
             filter.map((i, idx) => (
-              <Link to={`/cooks/${i.clerkId}`} key={i.id} className="w-full">
+              <Link to={`/cooks/${i.username}`} key={i.id} className="w-full">
                 <motion.div
                   className="w-full flex flex-col gap-2"
                   initial={{ opacity: 0, y: "10%" }}
                   animate={{ opacity: 1, y: "0%" }}
                   transition={{ delay: idx * 0.2 }}
                 >
-                  <img
-                    src={i.avatar}
-                    alt={i.firstName}
-                    className="w-full md:h-[181px] rounded-lg object-cover"
-                  />
+                  {i.avatar ? (
+                    <img
+                      src={urlFor(i.avatar).url()}
+                      alt={i.firstName}
+                      className="w-full md:h-[181px] rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="w-full md:h-[181px] grid place-items-center bg-gray-100 rounded-lg">
+                      <User className="opacity-50" />
+                    </div>
+                  )}
                   <p className="font-[600] text-base">
                     {i.firstName} {i.lastName}
                   </p>

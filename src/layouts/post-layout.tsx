@@ -1,11 +1,10 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { useClerk } from "@clerk/clerk-react";
+import { Outlet, Navigate } from "react-router-dom";
+import useGetUser from "../hooks/useGetUser";
 
 export default function PostLayout() {
-  const { user } = useClerk();
-  const navigate = useNavigate();
+  const { user } = useGetUser();
 
-  if (!user) navigate("/sign-in");
+  if (!user) return <Navigate to="/sign-in" replace={true} />;
   return (
     <>
       <Outlet />
